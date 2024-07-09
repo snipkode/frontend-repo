@@ -4,6 +4,7 @@ import { RootState } from '../store/store';
 import { updateStart, updateSuccess, updateFailure } from '../store/updateSlice';
 import axios from 'axios';
 import { Button, Typography } from '@mui/material';
+import { updateUserData } from '@/apis/userApis';
 
 const UpdateButton: React.FC = () => {
   const dispatch = useDispatch();
@@ -19,10 +20,10 @@ const UpdateButton: React.FC = () => {
 
     dispatch(updateStart());
     try {
-      await axios.post('/api/update-user-data', {}, {
-        headers: {
-          Authorization: token,
-        },
+      await updateUserData(token, {
+        userId: "A0sl6T473u5p0ed420OE",
+        name: "ardi wijaya",
+        email: "admin@ebbudy.com"
       });
       dispatch(updateSuccess());
     } catch (error) {
